@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="commons-lang3-3.8.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../LibreriasBaseDatos/Library/commons-lang3-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../LibreriasBaseDatos/Library/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../LibreriasBaseDatos/Library/jackcess-4.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
