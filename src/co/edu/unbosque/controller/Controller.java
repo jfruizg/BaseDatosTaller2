@@ -24,6 +24,7 @@ public class Controller {
         while (CONST == 1) {
             String nombreTabla = "Estudiante";
             if (accesoMDB.conectarBD()) {
+                accesoMDB.mostrarRegistrosTabla1("Estudiante", "Apellidos", "Nombres", "Sexo", "Edad", "Curso");
                 vista.mostrarDatos("Número registros tabla Contactos: " + accesoMDB.numRegistros("Estudiante"));
                 vista.mostrarDatos("Registrar -> [1]" + "\n" + "Consultar por curso -> [2]"+"\n"+ "Terminar -> [3]");
                 int menu = Integer.parseInt(vista.recibirDatos());
@@ -51,15 +52,12 @@ public class Controller {
                     vista.mostrarDatos("Escribe el curso que deseas buscar");
                     String curso= vista.recibirDatos();
 
+                    accesoMDB.buscarEstudiante(nombreTabla,"Curso",curso,"Apellidos", "Nombres", "Sexo", "Edad", "Curso");
 
-
-
-                    accesoMDB.mostrarRegistrosTabla1("Estudiante", "Apellidos", "Nombres", "Sexo", "Edad", "Curso");
                 }
                 if (menu == 3) {
                     accesoMDB.desconectarBD();
                     CONST = 0;
-
                 }
             }
         }

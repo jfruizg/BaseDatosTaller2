@@ -119,6 +119,30 @@ public class Acces {
         }
     }
 
+    public void buscarEstudiante(String nombreTabla, String campo, String valorFiltro,String campo1, String campo2, String campo3, String campo4,
+                                 String campo5) {
+        try {
+            Table tabla = BDAcces.getTable(nombreTabla);
+            Cursor cursor = CursorBuilder.createCursor(tabla);
+            for (Row registro : cursor.newIterable().addMatchPattern(campo, valorFiltro)) {
+                System.out.println("-------------------------------------");
+                if (!campo1.equalsIgnoreCase(""))
+                    System.out.println(campo1 + ": " + registro.get(campo1));
+                if (!campo2.equalsIgnoreCase(""))
+                    System.out.println(campo2 + ": " + registro.get(campo2));
+                if (!campo3.equalsIgnoreCase(""))
+                    System.out.println(campo3 + ": " + registro.get(campo3));
+                if (!campo4.equalsIgnoreCase(""))
+                    System.out.println(campo4 + ": " + registro.get(campo4));
+                if (!campo5.equalsIgnoreCase(""))
+                    System.out.println(campo5 + ": " + registro.get(campo5));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar en tabla [" + nombreTabla + "]: " + e.getMessage());
+        }
+    }
+
+
     // Método para actualizar el valor de los campos
     // de una tabla que cumplan un determinado filtro
     public void actualizarCampoTabla(String nombreTabla, String campo, Object filtro, String nuevoValor) {
