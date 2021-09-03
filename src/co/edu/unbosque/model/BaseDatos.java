@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class BaseDatos {
     private String rutaBD;
@@ -52,6 +56,7 @@ public class BaseDatos {
             System.out.println("Error al mostrar tabla [" + nombreTabla + "]: " + e.getMessage());
         }
     }
+
     public void registrarEstudiante(String nombreTabla, String apellido, String nombre, String sxo, int edad, String curso) {
         try {
             Table table = BDAcces.getTable(nombreTabla);
@@ -60,36 +65,39 @@ public class BaseDatos {
             System.out.println("Error al insertar registro en tabla [" + nombreTabla + "]: " + e.getMessage());
         }
     }
+
     public String buscarRegistroValor(String nombreTabla, String campo,
                                       String filtro, String campo1, String campo2, String campo3, String campo4,
-                                      String campo5)
-    {
+                                      String campo5) {
+        List nombres = new LinkedList<>();
         String valor = "";
-        try
-        {
+        String result = "";
+        try {
             Table tabla = BDAcces.getTable(nombreTabla);
             Cursor cursor = CursorBuilder.createCursor(tabla);
-            for (Row registro : cursor.newIterable().addMatchPattern(campo, filtro))
-            {
-                System.out.println("-------------------------------------");
+            for (Row registro : cursor.newIterable().addMatchPattern(campo, filtro)) {
                 if (!campo1.equalsIgnoreCase(""))
-                    System.out.println(campo1 + ": " + registro.get(campo1));
+                    nombres.add(campo1 + ": " + registro.get(campo1) + "\n");
                 if (!campo2.equalsIgnoreCase(""))
-                    System.out.println(campo2 + ": " + registro.get(campo2));
+                    nombres.add(campo2 + ": " + registro.get(campo2) + "\n");
                 if (!campo3.equalsIgnoreCase(""))
-                    System.out.println(campo3 + ": " + registro.get(campo3));
+                    nombres.add(campo3 + ": " + registro.get(campo3) + "\n");
                 if (!campo4.equalsIgnoreCase(""))
-                    System.out.println(campo4 + ": " + registro.get(campo4));
+                    nombres.add(campo4 + ": " + registro.get(campo4) + "\n");
                 if (!campo5.equalsIgnoreCase(""))
-                    System.out.println(campo5 + ": " + registro.get(campo5));
+                    nombres.add(campo5 + ": " + registro.get(campo5) + "\n");
+            }
+            Collections.sort(nombres);
+            for (int i = 0; i < nombres.size(); i++) {
+                System.out.println("-------------------------------------");
+                System.out.println(nombres.get(i)+"\n"+"-------------------------");
+                System.out.println("-------------------------------------");
             }
             return valor;
-        }
-        catch (Exception e)
-        {
-            System.out.println ("Error obtener valor de tabla [" + nombreTabla + "]: " +
+        } catch (Exception e) {
+            System.out.println("Error obtener valor de tabla [" + nombreTabla + "]: " +
                     e.getMessage());
-            return  "";
+            return "";
         }
     }
 
