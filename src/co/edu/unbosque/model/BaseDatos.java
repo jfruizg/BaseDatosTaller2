@@ -76,22 +76,17 @@ public class BaseDatos {
             Table tabla = BDAcces.getTable(nombreTabla);
             Cursor cursor = CursorBuilder.createCursor(tabla);
             for (Row registro : cursor.newIterable().addMatchPattern(campo, filtro)) {
+                System.out.println("-------------------------------------");
                 if (!campo1.equalsIgnoreCase(""))
-                    nombres.add(campo1 + ": " + registro.get(campo1) + "\n");
+                    System.out.println(campo1 + ": " + registro.get(campo1));
                 if (!campo2.equalsIgnoreCase(""))
-                    nombres.add(campo2 + ": " + registro.get(campo2) + "\n");
+                    System.out.println(campo2 + ": " + registro.get(campo2));
                 if (!campo3.equalsIgnoreCase(""))
-                    nombres.add(campo3 + ": " + registro.get(campo3) + "\n");
+                    System.out.println(campo3 + ": " + registro.get(campo3));
                 if (!campo4.equalsIgnoreCase(""))
-                    nombres.add(campo4 + ": " + registro.get(campo4) + "\n");
+                    System.out.println(campo4 + ": " + registro.get(campo4));
                 if (!campo5.equalsIgnoreCase(""))
-                    nombres.add(campo5 + ": " + registro.get(campo5) + "\n");
-            }
-            Collections.sort(nombres);
-            for (int i = 0; i < nombres.size(); i++) {
-                System.out.println("-------------------------------------");
-                System.out.println(nombres.get(i)+"\n"+"-------------------------");
-                System.out.println("-------------------------------------");
+                    System.out.println(campo5 + ": " + registro.get(campo5));
             }
             return valor;
         } catch (Exception e) {
