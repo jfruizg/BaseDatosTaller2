@@ -53,7 +53,7 @@ public class Controller {
                     vista.mostrarDatos("Escribe el curso que deseas buscar");
                     String curso = vista.recibirDatos();
                     if (!curso.equals("")) {
-                        vista.mostrarDatos(accesoMDB.buscarRegistroValor(nombreTabla, "Curso", "Access", "Apellidos", "Nombres", "Sexo", "Edad", "Curso"));
+                        vista.mostrarDatos(accesoMDB.buscarRegistroValor(nombreTabla, "Curso", curso, "Apellidos", "Nombres", "Sexo", "Edad", "Curso"));
                     } else {
                         accesoMDB.mostrarRegistrosTabla1("Estudiante", "Apellidos", "Nombres", "Sexo", "Edad", "Curso");
                     }
